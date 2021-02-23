@@ -37,6 +37,7 @@ module.exports = (env, argv) => {
     return base
   }
 
+
   return {
     target: 'web', // for dev server hot replacement module
     context: path.resolve(__dirname, 'src'),
@@ -82,17 +83,7 @@ module.exports = (env, argv) => {
               presets: ['@babel/preset-env']
             }
           }
-        },
-        {
-          test: /\.js$/,
-          exclude: /node_mobules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
-          }
-        },
+        }
       ]
     },
   }

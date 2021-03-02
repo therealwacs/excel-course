@@ -29,7 +29,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: fileName('css')
       }),
-      new CleanWebpackPlugin(),
+      new CleanWebpackPlugin()
     ]
     if (isDev) {
       base.push(new ESlintPlugin())
@@ -80,7 +80,8 @@ module.exports = (env, argv) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-class-properties']
             }
           }
         }

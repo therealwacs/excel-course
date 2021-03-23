@@ -13,9 +13,13 @@
     flex-direction: row;
     min-height: 20px;
     height: $row-height;
+    &:first-child {
+      user-select: none;
+    }
   }
   .row-info {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     min-width: $info-cell-width;
@@ -23,25 +27,41 @@
     border: 1px solid $border-color;
     border-top: none;
     background-color: #f8f9fa;
+    user-select: none;
   }
   .row-data {
     display: flex;
   }
   .column {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     background-color: #f9f8fa;
-    min-width: 40px;
     width: $cell-width;
+    min-width: $cell-width / 2;
     border: 1px solid $border-color;
     border-top: none;
     border-left: none;
+    &.active {
+      .col-resize {
+        opacity: 1;
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 1px;
+          height: 300px;
+          width: 2px;
+          background-color: $primary-color;
+        }
+      }
+    }
   }
   .cell {
-    min-width: 40px;
     padding: 5px;
     width: $cell-width;
+    min-width: $cell-width / 2;
     border: 1px solid #e2e3e3;
     border-left: none;
     border-top: none;
@@ -49,8 +69,38 @@
     outline: none;
     &.selected {
       border: none;
-      outline: 2px solid #3c74ff;
+      outline: 2px solid $primary-color;
       z-index: 2;
+    }
+  }
+  .col-resize, .row-resize {
+    position: absolute;
+    background-color: $primary-color;
+    opacity: 0;
+    z-index: 100;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+  .col-resize {
+    top: 0;
+    width: 4px;
+    right: 0;
+    bottom: 0;
+
+    &:hover {
+      cursor: col-resize;
+    }
+  }
+  .row-resize {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+
+    &:hover {
+      cursor: row-resize;
     }
   }
 }

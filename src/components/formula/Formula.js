@@ -27,7 +27,6 @@ export class Formula extends ExcelComponent {
     this.$formula.text('INITIAL VALUE')
     this.$on('table:select', $cell => {
       this.$formula.text($cell.data.value)
-      console.log($cell.data.value)
     })
   }
 
